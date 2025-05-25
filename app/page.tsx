@@ -5,7 +5,6 @@ import { SplitText } from "gsap/SplitText";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
