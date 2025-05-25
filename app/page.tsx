@@ -5,6 +5,7 @@ import { SplitText } from "gsap/SplitText";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
@@ -20,85 +21,94 @@ export default function Home() {
   const experienceRef = useRef(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const developer = developerRef.current;
-    const frontend = frontendRef.current;
-    const hero = heroRef.current;
-    const about = aboutRef.current;
-    const experience = experienceRef.current;
-    const tl = gsap.timeline();
+    try {
+      const section = sectionRef.current;
+      const developer = developerRef.current;
+      const frontend = frontendRef.current;
+      const hero = heroRef.current;
+      const about = aboutRef.current;
+      const experience = experienceRef.current;
+      const tl = gsap.timeline();
 
-    gsap.registerPlugin(SplitText);
-
-    let splitAbout = SplitText.create(about, {
-      type: 'words',
-    });
-
-    let splitExperience = SplitText.create(experience, {
-      type: 'words',
-    });
-
-    gsap.from(splitAbout.words, {
-      duration: 2,
-      opacity: 0,
-      yPercent: 100,
-      stagger: 0.02,
-      ease: 'power2.inOut',
-      scrollTrigger: {
-        trigger: about,
-        start: "top 80%",
-        end: "bottom 40%",
-        scrub: true
+      if (!section || !developer || !frontend || !hero || !about || !experience) {
+        console.warn('Some refs are not available');
+        return;
       }
-    });
 
-    gsap.from(splitExperience.words, {
-      duration: 2,
-      opacity: 0,
-      yPercent: 100,
-      stagger: 0.02,
-      ease: 'power2.inOut',
-      scrollTrigger: {
-        trigger: experience,
-        start: "top 80%",
-        end: "bottom 40%",
-        scrub: true
-      }
-    });
+      gsap.registerPlugin(SplitText);
 
-    tl.to(section, {
-      duration: 2,
-      text: 'MAXIM IVANOV',
-      stagger: 0.02,
-      ease: 'power2.inOut',
-    })
-      .to(section, {
-        duration: 1,
-        color: '#f43f5e',
-        ease: 'power2.inOut'
+      const splitAbout = SplitText.create(about, {
+        type: 'words',
       });
 
-    gsap.to(developer, {
-      xPercent: 8000,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: hero,
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      }
-    });
+      const splitExperience = SplitText.create(experience, {
+        type: 'words',
+      });
 
-    gsap.to(frontend, {
-      xPercent: -9000,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: hero,
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      }
-    });
+      gsap.from(splitAbout.words, {
+        duration: 2,
+        opacity: 0,
+        yPercent: 100,
+        stagger: 0.02,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: about,
+          start: "top 80%",
+          end: "bottom 40%",
+          scrub: true
+        }
+      });
+
+      gsap.from(splitExperience.words, {
+        duration: 2,
+        opacity: 0,
+        yPercent: 100,
+        stagger: 0.02,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: experience,
+          start: "top 80%",
+          end: "bottom 40%",
+          scrub: true
+        }
+      });
+
+      tl.to(section, {
+        duration: 2,
+        text: 'MAXIM IVANOV',
+        stagger: 0.02,
+        ease: 'power2.inOut',
+      })
+        .to(section, {
+          duration: 1,
+          color: '#f43f5e',
+          ease: 'power2.inOut'
+        });
+
+      gsap.to(developer, {
+        xPercent: 8000,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: hero,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      gsap.to(frontend, {
+        xPercent: -9000,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: hero,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    } catch (error) {
+      console.error('Error initializing animations:', error);
+    }
   }, []);
 
   return (
@@ -183,7 +193,7 @@ export default function Home() {
             <h2 id="about-heading" className="text-4xl md:text-5xl xl:text-7xl font-bold mb-8 md:mb-12">About</h2>
             <div className="prose prose-invert prose-lg">
               <p className="text-zinc-400 text-lg md:text-xl">
-                Hi, I'm Max — a front-end developer from Ukraine with a passion for building clean, responsive, and user-focused web experiences.
+                Hi, I&apos;m Max — a front-end developer from Ukraine with a passion for building clean, responsive, and user-focused web experiences.
                 I specialize in React, Next.js, TypeScript, and Tailwind CSS, and I love turning complex problems into simple, intuitive interfaces. I take pride in writing clean code, sweating the small details, and collaborating with teams to build products that actually help people.
               </p>
             </div>
