@@ -1,8 +1,10 @@
 @import "tailwindcss";
+@import "tailwindcss/utilities";
+
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -10,6 +12,16 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 793px;
+  --breakpoint-lg: 1126px;
+  --breakpoint-xl: 1300px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-macbook: 1700px;
+  --breakpoint-3xl: 2094px;
+  --breakpoint-4k: 2560px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +31,6 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  scroll-behavior: smooth;
 }
